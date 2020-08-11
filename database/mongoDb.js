@@ -7,7 +7,7 @@ async function connectDB() {
     useNewUrlParser: true,
   };
   await mongoose.connect(uri, options);
-  console.log(`Connect mongo success port:${process.env.MONGO_URL}`);
+  console.log(`Connect mongo success`);
 }
 
 module.exports = {

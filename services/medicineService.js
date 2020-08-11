@@ -5,7 +5,6 @@ async function addOrUpdateMedicine(medicine) {
 };
 
 async function removeMedicineByName(medicineName) {
-  console.log('son' + medicineName);
   const result = await Medicine.deleteOne({ name: medicineName });
   if (!result.deletedCount) {
     throw Error('Medicine name not exist');
