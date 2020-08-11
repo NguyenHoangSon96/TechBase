@@ -11,7 +11,16 @@ async function removeMedicineByName(medicineName) {
   }
 };
 
+async function findMedicineByName(medicineName) {
+  const results = await Medicine.find({ name: new RegExp(medicineName, "i") }).lean();
+  if (!results || !results.length) {
+    throw Error('Medicine name not exist');
+  }
+  return results;
+}
+
 module.exports = {
   addOrUpdateMedicine,
-  removeMedicineByName
+  removeMedicineByName,
+  findMedicineByName
 };

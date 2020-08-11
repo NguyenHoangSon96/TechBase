@@ -16,15 +16,7 @@ const medicineSchema = new Schema({
     default: 'BOX'
   },
   note: String,
-  createdAt: {
-    type: Date,
-    default: new Date(),
-  },
-  updatedAt: {
-    type: Date,
-    default: new Date(),
-  },
-});
+}, { timestamps: true });
 medicineSchema.index({ name: 1 });
 
 const Medicine = mongoose.model('medicine', medicineSchema);

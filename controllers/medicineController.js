@@ -1,4 +1,4 @@
-const { addOrUpdateMedicine, removeMedicineByName } = require('../services/medicineService');
+const { addOrUpdateMedicine, removeMedicineByName, findMedicineByName } = require('../services/medicineService');
 const { validationResult } = require('express-validator');
 
 
@@ -24,7 +24,17 @@ async function removeMedicineByNameController(req, res) {
   }
 }
 
+async function findMedicineByNameController(req, res) {
+  try {
+    const results = await findMedicineByName(req.query.name);
+    res.json(results);
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
+}
+
 module.exports = {
   addOrUpdateMedicineController,
-  removeMedicineByNameController
+  removeMedicineByNameController,
+  findMedicineByNameController
 }
