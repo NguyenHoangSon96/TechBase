@@ -1,0 +1,16 @@
+version: "3"
+services:
+    medicine-api:
+      container_name: medicine-api
+      image: latest/medicine-api
+      restart: always
+      build: .
+      ports:
+        - "3000:8081"
+      links:
+        - mongo
+    mongo:
+      container_name: mongo
+      image: mongo
+      ports:
+        - "27018:27017"
