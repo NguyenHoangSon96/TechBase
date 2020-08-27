@@ -34,11 +34,25 @@ app.use(function(req, res, next) {
 });
 
 app.use(function(err, req, res, next) {
+  console.log(`Status: ${err.status}`);
+  console.log(`Message: ${err.message}`);
+  // log ngay h error
+  console.log(err.error)
+  next(err);
+});
+
+
+app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   res.status(err.status || 500);
-  res.render('error');
+  res.json({
+    status: err.status,
+    message: err.status === 500 ? 'Internal server error' : err.message,
+    error: err.error || {},
+  })
+  //res.render('err');
 });
 
 module.exports = app;

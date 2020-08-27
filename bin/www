@@ -60,7 +60,7 @@ function onListening() {
   const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  connectDB();
+  connectDB().catch(err => console.error(err));
 
   debug('Listening on ' + bind);
 }
